@@ -1,0 +1,175 @@
+version: '3'
+
+services:
+#  sqlite3:
+#    image: nouchka/sqlite3:latest
+#    stdin_open: true
+#    tty: true
+#    volumes:
+#      - ./db/:/root/db/
+
+  mongo:
+    restart: always
+    image: mongo:latest
+#    command: [--auth]
+    volumes:
+      - /var/lib/mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - fined_network
+
+  # rabbitmq:
+  #   hostname: rabbitmq
+  #   image: rabbitmq:latest
+  #   ports:
+  #     - "5672:5672"
+  #   networks:
+  #     - fined_network
+
+#   web_scraper:
+#     build:
+#       context: .
+#       dockerfile: web_scraper/Dockerfile
+#     entrypoint: ./entrypoint.sh
+#     env_file:
+#       - ./config/secrets.env
+#     volumes:
+#       - ./web_scraper:/app/web_scraper
+#     networks:
+#       - fined_network
+#     ports:
+#       - "5001:5001"
+#     depends_on:
+#       - es01
+
+#   celery_web_scraper:
+# #    stdin_open: true
+# #    tty: true
+#     build:
+#       context: .
+#       dockerfile: web_scraper/Dockerfile
+#     entrypoint: ./celery_entrypoint.sh
+#     env_file:
+#       - ./config/secrets.env
+#     volumes:
+#       - ./web_scraper:/app/web_scraper
+#     networks:
+#       - fined_network
+#     depends_on:
+#       - rabbitmq
+#       - mongo
+#       - es01
+
+  web_server:
+    container_name: web_server
+    build:
+      context: .
+      dockerfile: web_server/Dockerfile
+    entrypoint: ./entrypoint.sh
+    env_file:
+      - ./config/secrets.env
+    volumes:
+      - ./web_server:/app/web_server
+    networks:
+      - fined_network
+    ports:
+      - "5005:5005"
+    depends_on:
+      - mongo
+      # - es01
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    env_file:
+      - frontend/.env
+    volumes:
+      - ./frontend:/app/frontend
+    networks:
+      - fined_network
+    ports:
+      - "5009:5009"
+    depends_on:
+      - web_server
+
+#   # Elastic Search Nodes:
+#   es01:
+#     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.1
+#     container_name: es01
+#     environment:
+#       - node.name=es01
+#       - discovery.seed_hosts=es02
+#       - cluster.initial_master_nodes=es01,es02
+#       - cluster.name=docker-cluster
+#       - bootstrap.memory_lock=true
+#       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#       - LICENSE=basic
+# #      - "path.repo=/mnt/backup"
+# #      - network.host=localhost
+#     ulimits:
+#       nproc: 65535
+#       memlock:
+#         soft: -1
+#         hard: -1
+#     stdin_open: true
+#     tty: true
+#     volumes:
+#       - esdata01:/usr/share/elasticsearch/data
+# #      - esbackup:/mnt/backup
+#     ports:
+#       - 9200:9200
+#     networks:
+#       - fined_network
+
+#   es02:
+#     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.1
+#     container_name: es02
+#     environment:
+#       - node.name=es02
+#       - discovery.seed_hosts=es01
+#       - cluster.initial_master_nodes=es01,es02
+#       - cluster.name=docker-cluster
+#       - bootstrap.memory_lock=true
+#       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#       - LICENSE=basic
+# #      - "path.repo=/mnt/backup"
+# #      - network.host=localhost
+#     ulimits:
+#       nproc: 65535
+#       memlock:
+#         soft: -1
+#         hard: -1
+#     stdin_open: true
+#     tty: true
+#     volumes:
+#       - esdata02:/usr/share/elasticsearch/data
+# #      - esbackup:/mnt/backup
+#     networks:
+#       - fined_network
+
+#  kibana:
+#    container_name: kibana
+#    image: docker.elastic.co/kibana/kibana:7.17.1
+#    environment:
+#      - ELASTICSEARCH_HOSTS=http://es01:9200
+#    ports:
+#      - 5601:5601
+#    depends_on:
+#      - es01
+#    networks:
+#      - fined_network
+
+volumes:
+  esdata01:
+    driver: local
+  esdata02:
+    driver: local
+#  esbackup:
+#    driver: local
+
+networks:
+  fined_network:
+    name: fined_network
+    driver: bridge
