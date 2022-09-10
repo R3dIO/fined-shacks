@@ -1,4 +1,5 @@
 import logging
+import traceback
 
 from pymongo import errors
 
@@ -20,8 +21,8 @@ def save_user(uid, email):
     except errors.OperationFailure as e:
         logger.debug(e)
         return e.details.get("errmsg")
-    except:
-        raise
+    except Exception as e:
+        print(e)
 
 
 def update_user_tags(email, tags):
@@ -76,16 +77,13 @@ def fetch_content(tags, page, per_page):
                     {'$limit': per_page},
                     {'$project': {'_id': 0, 'type': 1, 'title': 1, 'url': 1, 'excerpt': 1, 'url_image': 1}}
                 ])
-        # sorting
-        articles.sort(key=lambda x: x['creation_date'], reverse=True)
-        articles = truncate_descriptions(articles)
-        return articles
+        return matched_content
     except errors.OperationFailure as e:
-        app.logger.error(e)
-        app.logger.debug(traceback.format_exc())
+        logger.error(e)
+        logger.debug(traceback.format_exc())
         return e.details.get("errmsg")
     except Exception as e:
         print(traceback.format_exc())
-        app.logger.error(e)
-        app.logger.debug(traceback.format_exc())
+        logger.error(e)
+        logger.debug(traceback.format_exc())
         return None

@@ -4,8 +4,9 @@ from flask import Blueprint, request, jsonify, make_response
 from flask_restful import Resource
 from firebase_admin import auth
 
-from web_server import api, pb
-from web_server.utils.auth import check_token
+from web_server import api
+from web_server.utils.auth import pb, check_token
+from web_server.core.models import save_user
 
 core_blueprint = Blueprint('core', __name__)
 
@@ -19,8 +20,8 @@ class Ping(Resource):
 
 class Signup(Resource):
     def post(self):
-        email = request.form.get('email')
-        password = request.form.get('password')
+        email = request.json.get('email')
+        password = request.json.get('password')
         if email is None or password is None:
             return {'message': 'Error missing email or password'}, 400
         try:
@@ -28,6 +29,7 @@ class Signup(Resource):
                 email=email,
                 password=password
             )
+            save_user(uid=user.uid, email=email)
             return {'message': f'Successfully created user {user.uid}'}, 200
         except:
             return {'message': 'Error creating user'}, 400
@@ -41,8 +43,8 @@ class Logout(Resource):
 
 class Login(Resource):
     def get(self):
-        email = request.form.get('email')
-        password = request.form.get('password')
+        email = request.json.get('email')
+        password = request.json.get('password')
         try:
             user = pb.auth().sign_in_with_email_and_password(email, password)
             jwt = user['idToken']

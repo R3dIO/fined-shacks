@@ -13,10 +13,13 @@ RUN apt-get update && apt-get -y install curl
 RUN apt-get install -y python3-pip
 RUN pip3 install --upgrade pip
 
+# RUN apt-get install google-cloud-sdk-app-engine-python
+# RUN apt-get install google-cloud-sdk-app-engine-python-extras
+
 ADD web_server/requirements.txt /app
 RUN pip3 install -r /app/requirements.txt
-RUN pip3 install firebase-admin==5.0.3
-RUN pip3 install firebase_admin
+# RUN pip3 install firebase-admin==5.0.3
+RUN pip3 install firebase_admin==5.3.0
 
 RUN ls
 RUN locale -a
