@@ -28,6 +28,7 @@
 <div class="row" >
   <form class="demo-form center-block" style = "width:40%;">
     <div class="form-section">
+      <div> Identification </div>
       <label for="name">Full Name:</label>
       <input type="text" class="form-control" name="fullname" required="">
 
@@ -37,34 +38,99 @@
       <label for="email">Email:</label>
       <input type="email" class="form-control" name="email" required="">
 
+    </div>
+
+    <div class="form-section">
+      <div> Personal details </div>
       <label for="gender">Gender:</label>
         <br>
         <label for="genderOptions">Male</label>
         <input type="radio" id="gender" name="gender" value="male">
         <label for="genderOptions">Female</label>
         <input type="radio" id="gender" name="gender" value="female">
+
+        <br>
+        <label for="martial_status">Martial Status:</label>
+        <select name="martial_status" id="martial_status">
+          <option value="Single"> Single </option>
+          <option value="Married"> Married </option>
+          <option value="Divorced"> Divorced </option>
+        </select>
+  
+        <br>
+        <label for="race">Race:</label>
+        <select name="race" id="race">
+          <option value="Hispanic"> Hispanic </option>
+          <option value="African American"> African American </option>
+          <option value="Asian"> Asian </option>
+        </select>
     </div>
 
     <div class="form-section">
+      <div> Employment & Economic </div>
       <label for="occupation">Occupation:</label>
-      <input list="occupation">
-      <datalist id="occupation">
-        <option value="Student">
-        <option value="Employed">
-        <option value="Retired">
+      <select name="occupation" id="occupation">
+        <option value="Student"> Student </option>
+        <option value="Employed"> Employed </option>
+        <option value="Retired"> Retired </option>
+        <option value="Unemployed"> Unemployed </option>
+      </select>
+
+      <br>
+      <label for="income">Income</label>
+      0 <input type="range" value="10000" id="income" name=income" min="0" max="100000" oninput="this.nextElementSibling.value = this.value"> 1,00,000
+      <output>10000</output>
+
+      <br>
+      <label for="health_insurance">Health Insurance:</label>
+      <input type="checkbox"  id="health_insurance" name="health_insurance">
+    </div>
+    
+    <div class="form-section">
+      <div> Finance </div>
+      <label for="personal_savings">Personal savings:</label>
+      <select name="personal_savings" id="personal_savings" class="form-control">
+        <option value="low"> 	&lt; $500 </option>
+        <option value="medium">  500 &gt; X &lt; 50000 </option>
+        <option value="high"> &gt; 50000 </option>
+      </select>
+
+      <label for="living_expenses">Living expenses:</label>
+      <select name="living_expenses" id="living_expenses" class="form-control">
+        <option value="low"> 	&lt; $1000 </option>
+        <option value="medium">  1000 &gt; X &lt; 5000 </option>
+        <option value="high"> &gt; 5000 </option>
+      </select>
+    
+      <label for="credit_status"> Do you have a credit card?</label>
+      <input type="checkbox"  id="credit_status" name="credit_status"  default="false">
+
+      <br>
+      <label for="number_of_cards">Number of cards:</label>
+      <input type="number" class="form-control" name="number_of_cards" class="form-control" required="" min="1" max="100">
+
+      <br>
+      <label for="credit_score">Credit Score:</label>
+      <select name="credit_score" id="credit_score" class="form-control">
+        <option value="poor"> 	Poor (&lt 700) </option>
+        <option value="good">  (Good 700 &gt; || &lt; 800) </option>
+        <option value="excellent"> (excellent &gt; 800) </option>
+      </select>
+    </div>
+
+    <div class="form-section">
+      <div> Location: </div>
+      <label for="city_label">City:</label>
+      <input list="city" class="form-control" name="city_label">
+      <datalist id="city">
+        <option value="Miami">
+        <option value="Jacksonville">
+        <option value="Orlando">
+        <option value="Tampa">
+        <option value="Gainesville">
       </datalist>
     </div>
-    
-    <div class="form-section">
-      <label for="color">Favorite color:</label>
-      <input type="text" class="form-control" name="color" required="">
-    </div>
 
-    <div class="form-section">
-      <label for="color">Favorite color:</label>
-      <input type="text" class="form-control" name="color" required="">
-    </div>
-    
     <div class="form-navigation">
       <button type="button" class="previous btn btn-info pull-left">&lt; Previous</button>
       <button type="button" class="next btn btn-info pull-right">Next &gt;</button>
