@@ -1,0 +1,13 @@
+.history/
+
+.idea/
+.vscode/
+venv/
+
+.DS_Store
+thumbs.db
+
+exp/
+config/.env
+config/prod.env
+
