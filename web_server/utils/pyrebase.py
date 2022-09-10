@@ -7,7 +7,7 @@ import python_jwt as jwt
 from Crypto.PublicKey import RSA
 import datetime
 from oauth2client.service_account import ServiceAccountCredentials
-from requests.packages.urllib3.contrib.appengine import is_appengine_sandbox
+# from requests.packages.urllib3.contrib.appengine import is_appengine_sandbox
 from requests_toolbelt.adapters import appengine
 
 
@@ -30,8 +30,8 @@ class Firebase:
     def __init__(self, config):
         self.api_key = config["apiKey"]
         self.auth_domain = config["authDomain"]
-        self.database_url = config["databaseURL"]
-        self.storage_bucket = config["storageBucket"]
+        # self.database_url = config["databaseURL"]
+        # self.storage_bucket = config["storageBucket"]
         self.credentials = None
         self.requests = requests.Session()
         if config.get("serviceAccount"):
@@ -47,16 +47,16 @@ class Firebase:
             if service_account_type is dict:
                 self.credentials = ServiceAccountCredentials.from_json_keyfile_dict(
                     config["serviceAccount"], scopes)
-        if is_appengine_sandbox():
-            # Fix error in standard GAE environment
-            # is releated to https://github.com/kennethreitz/requests/issues/3187
-            # ProtocolError('Connection aborted.', error(13, 'Permission denied'))
-            adapter = appengine.AppEngineAdapter(max_retries=3)
-        else:
-            adapter = requests.adapters.HTTPAdapter(max_retries=3)
+        # if is_appengine_sandbox():
+        #     # Fix error in standard GAE environment
+        #     # is releated to https://github.com/kennethreitz/requests/issues/3187
+        #     # ProtocolError('Connection aborted.', error(13, 'Permission denied'))
+        #     adapter = appengine.AppEngineAdapter(max_retries=3)
+        # else:
+        #     adapter = requests.adapters.HTTPAdapter(max_retries=3)
 
-        for scheme in ('http://', 'https://'):
-            self.requests.mount(scheme, adapter)
+        # for scheme in ('http://', 'https://'):
+        #     self.requests.mount(scheme, adapter)
 
     def auth(self):
         return Auth(self.api_key, self.requests, self.credentials)
