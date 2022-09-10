@@ -6,97 +6,189 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/doc/assets/docs.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/src/parsley.css">
+    <link rel="stylesheet" href="./style.css">
+    <!-- CSS only -->
     <title> FinEd </title>
 </head>
 
 <body>
-    <div class="container">
+    <!-- <div class="container">
         <div class="intro">
             <h1>Welcome User</h1>
             <figure><img
                     src="https://images.unsplash.com/photo-1549227082-0ea18ce30397?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80">
             </figure>
         </div>
+    </div> -->
+
+<div class="row" >
+  <form class="demo-form center-block" style = "width:40%;">
+    <div class="form-section">
+      <div> Identification </div>
+      <label for="name">Full Name:</label>
+      <input type="text" class="form-control" name="fullname" required="">
+
+      <label for="age">Age:</label>
+      <input type="number" class="form-control" name="age" required="">
+
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" name="email" required="">
+
     </div>
 
-<form class="demo-form">
-  <div class="form-section">
-    <label for="firstname">First Name:</label>
-    <input type="text" class="form-control" name="firstname" required="">
+    <div class="form-section">
+      <div> Personal details </div>
+      <label for="gender">Gender:</label>
+        <br>
+        <label for="genderOptions">Male</label>
+        <input type="radio" id="gender" name="gender" value="male">
+        <label for="genderOptions">Female</label>
+        <input type="radio" id="gender" name="gender" value="female">
 
-    <label for="lastname">Last Name:</label>
-    <input type="text" class="form-control" name="lastname" required="">
-  </div>
+        <br>
+        <label for="martial_status">Martial Status:</label>
+        <select name="martial_status" id="martial_status">
+          <option value="Single"> Single </option>
+          <option value="Married"> Married </option>
+          <option value="Divorced"> Divorced </option>
+        </select>
+  
+        <br>
+        <label for="race">Race:</label>
+        <select name="race" id="race">
+          <option value="Hispanic"> Hispanic </option>
+          <option value="African American"> African American </option>
+          <option value="Asian"> Asian </option>
+        </select>
+    </div>
 
-  <div class="form-section">
-    <label for="email">Email:</label>
-    <input type="email" class="form-control" name="email" required="">
-  </div>
+    <div class="form-section">
+      <div> Employment & Economic </div>
+      <label for="occupation">Occupation:</label>
+      <select name="occupation" id="occupation">
+        <option value="Student"> Student </option>
+        <option value="Employed"> Employed </option>
+        <option value="Retired"> Retired </option>
+        <option value="Unemployed"> Unemployed </option>
+      </select>
 
-  <div class="form-section">
-    <label for="color">Favorite color:</label>
-    <input type="text" class="form-control" name="color" required="">
-  </div>
+      <br>
+      <label for="income">Income</label>
+      0 <input type="range" value="10000" id="income" name=income" min="0" max="100000" oninput="this.nextElementSibling.value = this.value"> 1,00,000
+      <output>10000</output>
 
-  <div class="form-navigation">
-    <button type="button" class="previous btn btn-info pull-left">&lt; Previous</button>
-    <button type="button" class="next btn btn-info pull-right">Next &gt;</button>
-    <input type="submit" class="btn btn-default pull-right">
-    <span class="clearfix"></span>
-  </div>
+      <br>
+      <label for="health_insurance">Health Insurance:</label>
+      <input type="checkbox"  id="health_insurance" name="health_insurance">
+    </div>
+    
+    <div class="form-section">
+      <div> Finance </div>
+      <label for="personal_savings">Personal savings:</label>
+      <select name="personal_savings" id="personal_savings" class="form-control">
+        <option value="low"> 	&lt; $500 </option>
+        <option value="medium">  500 &gt; X &lt; 50000 </option>
+        <option value="high"> &gt; 50000 </option>
+      </select>
 
-</form>
+      <label for="living_expenses">Living expenses:</label>
+      <select name="living_expenses" id="living_expenses" class="form-control">
+        <option value="low"> 	&lt; $1000 </option>
+        <option value="medium">  1000 &gt; X &lt; 5000 </option>
+        <option value="high"> &gt; 5000 </option>
+      </select>
+    
+      <label for="credit_status"> Do you have a credit card?</label>
+      <input type="checkbox"  id="credit_status" name="credit_status"  default="false">
+
+      <br>
+      <label for="number_of_cards">Number of cards:</label>
+      <input type="number" class="form-control" name="number_of_cards" class="form-control" required="" min="1" max="100">
+
+      <br>
+      <label for="credit_score">Credit Score:</label>
+      <select name="credit_score" id="credit_score" class="form-control">
+        <option value="poor"> 	Poor (&lt 700) </option>
+        <option value="good">  (Good 700 &gt; || &lt; 800) </option>
+        <option value="excellent"> (excellent &gt; 800) </option>
+      </select>
+    </div>
+
+    <div class="form-section">
+      <div> Location: </div>
+      <label for="city_label">City:</label>
+      <input list="city" class="form-control" name="city_label">
+      <datalist id="city">
+        <option value="Miami">
+        <option value="Jacksonville">
+        <option value="Orlando">
+        <option value="Tampa">
+        <option value="Gainesville">
+      </datalist>
+    </div>
+
+    <div class="form-navigation">
+      <button type="button" class="previous btn btn-info pull-left">&lt; Previous</button>
+      <button type="button" class="next btn btn-info pull-right">Next &gt;</button>
+      <input type="submit" class="btn btn-default pull-right">
+      <span class="clearfix"></span>
+    </div>   
+  </form>
+</div>
 
 <script
   src="https://code.jquery.com/jquery-2.2.4.js"
   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
   crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/dist/parsley.js"></script>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 <script type="text/javascript">
-$(function () {
-  var $sections = $('.form-section');
-
-  function navigateTo(index) {
-    // Mark the current section with the class 'current'
-    $sections
-      .removeClass('current')
-      .eq(index)
-        .addClass('current');
-    // Show only the navigation buttons that make sense for the current section:
-    $('.form-navigation .previous').toggle(index > 0);
-    var atTheEnd = index >= $sections.length - 1;
-    $('.form-navigation .next').toggle(!atTheEnd);
-    $('.form-navigation [type=submit]').toggle(atTheEnd);
-  }
-
-  function curIndex() {
-    // Return the current index by looking at which section has the class 'current'
-    return $sections.index($sections.filter('.current'));
-  }
-
-  // Previous button is easy, just go back
-  $('.form-navigation .previous').click(function() {
-    navigateTo(curIndex() - 1);
-  });
-
-  // Next button goes forward iff current block validates
-  $('.form-navigation .next').click(function() {
-    $('.demo-form').parsley().whenValidate({
-      group: 'block-' + curIndex()
-    }).done(function() {
-      navigateTo(curIndex() + 1);
+  $(function () {
+    var $sections = $('.form-section');
+  
+    function navigateTo(index) {
+      // Mark the current section with the class 'current'
+      $sections
+        .removeClass('current')
+        .eq(index)
+          .addClass('current');
+      // Show only the navigation buttons that make sense for the current section:
+      $('.form-navigation .previous').toggle(index > 0);
+      var atTheEnd = index >= $sections.length - 1;
+      $('.form-navigation .next').toggle(!atTheEnd);
+      $('.form-navigation [type=submit]').toggle(atTheEnd);
+    }
+  
+    function curIndex() {
+      // Return the current index by looking at which section has the class 'current'
+      return $sections.index($sections.filter('.current'));
+    }
+  
+    // Previous button is easy, just go back
+    $('.form-navigation .previous').click(function() {
+      navigateTo(curIndex() - 1);
     });
+  
+    // Next button goes forward iff current block validates
+    $('.form-navigation .next').click(function() {
+      $('.demo-form').parsley().whenValidate({
+        group: 'block-' + curIndex()
+      }).done(function() {
+        navigateTo(curIndex() + 1);
+      });
+    });
+  
+    // Prepare sections by setting the `data-parsley-group` attribute to 'block-0', 'block-1', etc.
+    $sections.each(function(index, section) {
+      $(section).find(':input').attr('data-parsley-group', 'block-' + index);
+    });
+    navigateTo(0); // Start at the beginning
   });
-
-  // Prepare sections by setting the `data-parsley-group` attribute to 'block-0', 'block-1', etc.
-  $sections.each(function(index, section) {
-    $(section).find(':input').attr('data-parsley-group', 'block-' + index);
-  });
-  navigateTo(0); // Start at the beginning
-});
-</script>
+  </script>
 </body>
 </html>
