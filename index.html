@@ -145,50 +145,11 @@
   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
   crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/dist/parsley.js"></script>
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-<script type="text/javascript">
-  $(function () {
-    var $sections = $('.form-section');
-  
-    function navigateTo(index) {
-      // Mark the current section with the class 'current'
-      $sections
-        .removeClass('current')
-        .eq(index)
-          .addClass('current');
-      // Show only the navigation buttons that make sense for the current section:
-      $('.form-navigation .previous').toggle(index > 0);
-      var atTheEnd = index >= $sections.length - 1;
-      $('.form-navigation .next').toggle(!atTheEnd);
-      $('.form-navigation [type=submit]').toggle(atTheEnd);
-    }
-  
-    function curIndex() {
-      // Return the current index by looking at which section has the class 'current'
-      return $sections.index($sections.filter('.current'));
-    }
-  
-    // Previous button is easy, just go back
-    $('.form-navigation .previous').click(function() {
-      navigateTo(curIndex() - 1);
-    });
-  
-    // Next button goes forward iff current block validates
-    $('.form-navigation .next').click(function() {
-      $('.demo-form').parsley().whenValidate({
-        group: 'block-' + curIndex()
-      }).done(function() {
-        navigateTo(curIndex() + 1);
-      });
-    });
-  
-    // Prepare sections by setting the `data-parsley-group` attribute to 'block-0', 'block-1', etc.
-    $sections.each(function(index, section) {
-      $(section).find(':input').attr('data-parsley-group', 'block-' + index);
-    });
-    navigateTo(0); // Start at the beginning
-  });
-  </script>
+<script 
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" 
+  integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" 
+  crossorigin="anonymous"></script>
+<script src="./logic.js" type="text/javascript"> </script>
+
 </body>
 </html>
