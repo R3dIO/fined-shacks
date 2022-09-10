@@ -43,14 +43,27 @@ $(function () {
   $(document).ready(function () {
   $("form").submit(function (event) {
     var formData = {
-      name: $("#name").val(),
+      name: $("#fullname").val(),
       email: $("#email").val(),
-      superheroAlias: $("#superheroAlias").val(),
+      age: $("#age").val(),
+      gender: $("#gender").val(),
+      martial_status: $("#martial_status").val(),
+      race: $("#race").val(),
+      occupation: $("#occupation").val(),
+      income: $("#income").val(),
+      health_insurance: $("#health_insurance").val(),
+      personal_savings: $("#personal_savings").val(),  
+      living_expenses: $("#living_expenses").val(),  
+      credit_cards_issued: $("#number_of_cards").val(),
+      credit_score: $("#credit_score").val(),  
+      city:  $("#city").val(),  
     };
+
+    console.log(formData);
 
     $.ajax({
       type: "POST",
-      url: "process.php",
+      url: "http://www.google.com",
       data: formData,
       dataType: "json",
       encode: true,
