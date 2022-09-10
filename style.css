@@ -1,0 +1,14 @@
+.form-section {
+    padding-left: 15px;
+    border-left: 2px solid #FF851B;
+    display: none;
+}
+.form-section.current {
+    display: inherit;
+}
+.btn-info, .btn-default {
+    margin-top: 10px;
+}
+html.codepen body {
+    margin: 1em;
+}
