@@ -3,6 +3,7 @@
 .idea/
 .vscode/
 venv/
+__pycache__/
 
 .DS_Store
 thumbs.db
@@ -11,3 +12,5 @@ exp/
 config/.env
 config/prod.env
 
+firebase-adminsdk.json
+firebase-config.json

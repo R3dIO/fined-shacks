@@ -79,20 +79,20 @@ services:
       - mongo
       # - es01
 
-  frontend:
-    build:
-      context: .
-      dockerfile: frontend/Dockerfile
-    env_file:
-      - frontend/.env
-    volumes:
-      - ./frontend:/app/frontend
-    networks:
-      - fined_network
-    ports:
-      - "5009:5009"
-    depends_on:
-      - web_server
+  # frontend:
+  #   build:
+  #     context: .
+  #     dockerfile: frontend/Dockerfile
+  #   env_file:
+  #     - frontend/.env
+  #   volumes:
+  #     - ./frontend:/app/frontend
+  #   networks:
+  #     - fined_network
+  #   ports:
+  #     - "5009:5009"
+  #   depends_on:
+  #     - web_server
 
 #   # Elastic Search Nodes:
 #   es01:

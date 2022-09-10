@@ -1,17 +1,27 @@
 import datetime
 import logging
 import os
+import json
 
 from flask import Flask
 from flask_cors import CORS
 from flask_pymongo import PyMongo
 from flask_restful import Api
+print(Flask.__dict__)
+
+import firebase_admin
+from firebase_admin import credentials
+
+from web_server.common.constants import FIREBASE_CONFIG_FILE
 
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
+cred = credentials.Certificate(FIREBASE_CONFIG_FILE)
+firebase = firebase_admin.initialize_app(cred)
+
 
 app.logger.setLevel(logging.DEBUG)
 
