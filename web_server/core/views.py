@@ -4,9 +4,11 @@ from flask import Blueprint, request, jsonify, make_response
 from flask_restful import Resource
 from firebase_admin import auth
 
-from web_server import api
+from web_server import api,app
 from web_server.utils.auth import pb, check_token
 from web_server.core.models import save_user
+from web_server.core.helper import generate_tags_from_form
+
 
 core_blueprint = Blueprint('core', __name__)
 
@@ -55,9 +57,13 @@ class Login(Resource):
 
 class SaveUserDetails(Resource):
     def post(self):
+        print(request)
         user_details = request.json
+        print(user_details)
         try:
             tags = generate_tags_from_form(user_details)
+            print(tags)
+
             # store tags in db
         except:
             return {'message': 'There was an error logging in'}, 400
@@ -67,3 +73,4 @@ class SaveUserDetails(Resource):
 api.add_resource(Ping, '/ping')
 api.add_resource(Signup, '/signup')
 api.add_resource(Login, '/login')
+api.add_resource(SaveUserDetails, '/submit')
