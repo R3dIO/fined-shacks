@@ -9,6 +9,7 @@ from firebase_admin import auth
 
 from web_server import api
 from web_server.utils.auth import pb, check_token
+from web_server.core.helper import generate_tags_from_form
 from web_server.core.models import save_user, retrieve_user_by_email, fetch_content, update_user_tags
 from web_server.common.constants import (
     API_STATUS_ERROR, API_STATUS_FAILURE, API_STATUS_PARTIAL, API_STATUS_SUCCESS)
@@ -81,7 +82,7 @@ class SaveUserDetails(Resource):
             update_user_tags(email=email, tags=tags)
             return make_response(jsonify({'status': API_STATUS_SUCCESS, 'message': 'saved user information'}))
         except:
-            return {'message': 'There was an error logging in'}, 400
+            return make_response(jsonify({'status': API_STATUS_ERROR, 'message': 'There was an error saving user details'}), 400)
 
 
 class RetrieveAdviceContent(Resource):
@@ -130,5 +131,6 @@ class AdviceFeedback(Resource):
 api.add_resource(Ping, '/ping')
 api.add_resource(Signup, '/signup')
 api.add_resource(Login, '/login')
+api.add_resource(SaveUserDetails, '/save-user-details')
 api.add_resource(RetrieveAdviceContent, '/advice')
 api.add_resource(AdviceFeedback, '/feedback')
