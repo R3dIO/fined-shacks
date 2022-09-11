@@ -79,7 +79,7 @@ class SaveUserDetails(Resource):
         try:
             tags = generate_tags_from_form(user_details)
             # store tags in db
-            update_user_tags(email=email, tags=tags)
+            update_user_tags(email=user_details['email'], tags=tags)
             return make_response(jsonify({'status': API_STATUS_SUCCESS, 'message': 'saved user information'}))
         except:
             return make_response(jsonify({'status': API_STATUS_ERROR, 'message': 'There was an error saving user details'}), 400)
