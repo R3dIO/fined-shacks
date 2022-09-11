@@ -9,7 +9,7 @@ from firebase_admin import auth
 
 from web_server import api
 from web_server.utils.auth import pb, check_token
-from web_server.core.models import save_user, retrieve_user_by_email, fetch_content
+from web_server.core.models import save_user, retrieve_user_by_email, fetch_content, update_user_tags
 from web_server.common.constants import (
     API_STATUS_ERROR, API_STATUS_FAILURE, API_STATUS_PARTIAL, API_STATUS_SUCCESS)
 
@@ -78,6 +78,8 @@ class SaveUserDetails(Resource):
         try:
             tags = generate_tags_from_form(user_details)
             # store tags in db
+            update_user_tags(email=email, tags=tags)
+            return make_response(jsonify({'status': API_STATUS_SUCCESS, 'message': 'saved user information'}))
         except:
             return {'message': 'There was an error logging in'}, 400
 
