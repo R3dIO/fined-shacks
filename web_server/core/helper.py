@@ -2,7 +2,7 @@ from ..common.constants import STR_CATEGORY_TAGS
 
 def categorize_annual_income(form_json):
     if "income" in form_json:
-        income = form_json["income"]
+        income = int(form_json["income"])
         if income <= 20000:
             return "low_income"
         elif 20000 < income < 50000:
@@ -14,8 +14,8 @@ def categorize_annual_income(form_json):
 
 def categorize_amount_invested(form_json):
     if "amount_invested" in form_json:
-        invested = form_json["amount_invested"]
-        if invested <= 100:
+        invested = int(form_json["amount_invested"])
+        if invested <= 1000:
             return "low_amount_invested"
         elif 1000 < invested < 3500:
             return "medium_amount_invested"
@@ -27,7 +27,7 @@ def categorize_amount_invested(form_json):
 
 def categorize_age(form_json):
     if "age" in form_json:
-        age = form_json["age"]
+        age = int(form_json["age"])
         if age < 18:
             return "teen"
         elif 18 <= age < 25:
@@ -42,7 +42,7 @@ def categorize_age(form_json):
 
 def categorize_credit_cards_issues(form_json):
     if "credit_cards_issued" in form_json:
-        cards = form_json["credit_cards_issued"]
+        cards = int(form_json["credit_cards_issued"])
         if cards == 1:
             return "low_credit_cards_issued"
         elif 1 < cards <= 3:
@@ -76,12 +76,14 @@ def add_city(form_json):
         else:
             return "city_present"
 
+
 def categorize(form_json):
     final_user_tags = set()
     final_user_tags.add(categorize_annual_income(form_json))
     final_user_tags.add(categorize_age(form_json))
     final_user_tags.add(categorize_credit_score(form_json))
     final_user_tags.add(categorize_health_insurance(form_json))
+    final_user_tags.add(categorize_amount_invested(form_json))
     final_user_tags.add(add_city(form_json))
 
     final_user_tags.update(["_".join(form_json[key].replace(" ","").lower().split()) for key in STR_CATEGORY_TAGS])

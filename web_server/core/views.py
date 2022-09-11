@@ -65,7 +65,8 @@ class SaveUserDetails(Resource):
             print(tags)
 
             # store tags in db
-        except:
+        except Exception as e:
+            print(e)
             return {'message': 'There was an error logging in'}, 400
 
 
