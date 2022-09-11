@@ -1,14 +1,17 @@
+import email
+import json
 import logging
+import traceback
 
 from flask import Blueprint, request, jsonify, make_response
 from flask_restful import Resource
 from firebase_admin import auth
 
-from web_server import api,app
+from web_server import api
 from web_server.utils.auth import pb, check_token
-from web_server.core.models import save_user
-from web_server.core.helper import generate_tags_from_form
-
+from web_server.core.models import save_user, retrieve_user_by_email, fetch_content
+from web_server.common.constants import (
+    API_STATUS_ERROR, API_STATUS_FAILURE, API_STATUS_PARTIAL, API_STATUS_SUCCESS)
 
 core_blueprint = Blueprint('core', __name__)
 
@@ -24,16 +27,28 @@ class Signup(Resource):
     def post(self):
         email = request.json.get('email')
         password = request.json.get('password')
+        first_name = request.json.get('first_name')
+        last_name = request.json.get('last_name')
         if email is None or password is None:
-            return {'message': 'Error missing email or password'}, 400
+            return make_response(
+                jsonify({'status': API_STATUS_ERROR,
+                'message': 'Error missing email or password'}), 400)
         try:
             user = auth.create_user(
+                display_name=first_name,
                 email=email,
                 password=password
             )
-            save_user(uid=user.uid, email=email)
-            return {'message': f'Successfully created user {user.uid}'}, 200
-        except:
+            if user.uid:
+                save_user(uid=user.uid, email=email,
+                          first_name=first_name, last_name=last_name)
+            return make_response(
+                jsonify({'status': API_STATUS_SUCCESS,
+                        'message': f'Successfully created user {user.uid}'}), 200
+            )
+        except Exception as e:
+            logger.error(e)
+            logger.debug(traceback.format_exc())
             return {'message': 'Error creating user'}, 400
 
 
@@ -50,28 +65,68 @@ class Login(Resource):
         try:
             user = pb.auth().sign_in_with_email_and_password(email, password)
             jwt = user['idToken']
-            return {'token': jwt}, 200
-        except:
-            return {'message': 'There was an error logging in'}, 400
+            return make_response(jsonify({'status': API_STATUS_SUCCESS, 'token': jwt}), 200)
+        except Exception as e:
+            logger.error(e)
+            logger.debug(traceback.format_exc())
+            return make_response(jsonify({'status': API_STATUS_ERROR, 'message': 'There was an error logging in'}), 400)
 
 
 class SaveUserDetails(Resource):
     def post(self):
-        print(request)
         user_details = request.json
-        print(user_details)
         try:
             tags = generate_tags_from_form(user_details)
-            print(tags)
-
             # store tags in db
-        except Exception as e:
-            print(e)
+        except:
             return {'message': 'There was an error logging in'}, 400
 
+
+class RetrieveAdviceContent(Resource):
+    def post(self):
+        user_email = request.json.get("email")
+        page = request.json.get("page")
+        per_page = request.json.get("per_page")
+        try:
+            user_details = retrieve_user_by_email(email=user_email)
+            matched_content = fetch_content(
+                tags=user_details["tags"], page=page, per_page=per_page)
+            if matched_content:
+                return make_response(jsonify({'status': API_STATUS_SUCCESS, 'matched_content': matched_content}))
+            if not matched_content:
+                default_content = fetch_content(
+                    tags=['default'], page=page, per_page=per_page)
+                return make_response(jsonify({'status': API_STATUS_SUCCESS, 'default_content': default_content}))
+        except Exception as e:
+            logger.error(e)
+            logger.debug(traceback.format_exc())
+            return make_response(jsonify({'status': API_STATUS_ERROR, 'message': e}), 500)
+
+
+class AdviceFeedback(Resource):
+    def post(self):
+        user_email = request.json.get("email")
+        page = request.json.get("page")
+        per_page = request.json.get("per_page")
+        # advice_id =
+        try:
+            user_details = retrieve_user_by_email(email=user_email)
+            matched_content = fetch_content(
+                tags=user_details["tags"], page=page, per_page=per_page)
+            if matched_content:
+                return make_response(jsonify({'status': API_STATUS_SUCCESS, 'matched_content': matched_content}))
+            if not matched_content:
+                default_content = fetch_content(
+                    tags=['default'], page=page, per_page=per_page)
+                return make_response(jsonify({'status': API_STATUS_SUCCESS, 'default_content': default_content}))
+        except Exception as e:
+            logger.error(e)
+            logger.debug(traceback.format_exc())
+            return make_response(jsonify({'status': API_STATUS_ERROR, 'message': e}), 500)
 
 
 api.add_resource(Ping, '/ping')
 api.add_resource(Signup, '/signup')
 api.add_resource(Login, '/login')
-api.add_resource(SaveUserDetails, '/submit')
+api.add_resource(RetrieveAdviceContent, '/advice')
+api.add_resource(AdviceFeedback, '/feedback')
