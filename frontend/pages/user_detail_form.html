@@ -27,101 +27,131 @@
 <h1><img class="logo" src="./images/RedTree_1.jpg" ></a> </h1> 
 
 <div class="row" >
-  <form class="demo-form center-block" style = "width:40%;">
+  <form class="demo-form center-block col-sm-8" style = "width:40%;">
     
     <div class="form-section">
-      <div> Identification </div>
+      <h2> Identification </h2>
+      <div class= "p-3 border bg-light">
       <label for="name">Full Name:</label>
       <input type="text" class="form-control" id="fullname" name="fullname" required="">
-
+      </div>
+      <br>
+      <div class= "p-3 border bg-light">
       <label for="age">Age:</label>
       <input type="number" class="form-control" id="age" name="age" required="">
-
-      <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" name="email" required="">
-
+      </div>
+      <br>
+      <div class= "p-3 border bg-light">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" required="">
+      </div>
     </div>
 
     <div class="form-section">
-      <div> Personal details </div>
-      <label for="sex">sex:</label>
-        <br>
-
+      <h2> Personal details </h2>
+      <div class= "p-3 border bg-light">
+        <label for="sex">Sex:</label>
+      
         <label for="genderOptions">Male</label>
         <input type="radio" id="sex" name="sex" value="male">
         <label for="genderOptions">Female</label>
         <input type="radio" id="sex" name="sex" value="female">
-
+        <br>        
+        <label for="genderOptions">Prefer Not To Say</label>
+        <input type="radio" id="sex" name="sex" value="unspecified">
         <br>
+      </div>
+      <br>
+      <div class= "p-3 border bg-light">  
         <label for="martial_status">Martial Status:</label>
         <select name="martial_status" id="martial_status">
           <option value="Single"> Single </option>
           <option value="Married"> Married </option>
           <option value="Divorced"> Divorced </option>
         </select>
-  
+      </div>  
         <br>
+      <div class= "p-3 border bg-light">  
         <label for="race">Race:</label>
         <select name="race" id="race">
           <option value="Hispanic"> Hispanic </option>
           <option value="African American"> African American </option>
           <option value="Asian"> Asian </option>
         </select>
+      </div>
     </div>
 
+
     <div class="form-section">
-      <div> Employment & Economic </div>
-      <label for="occupation">Occupation:</label>
-      <select name="occupation" id="occupation">
-        <option value="Student"> Student </option>
-        <option value="Employed"> Employed </option>
-        <option value="Retired"> Retired </option>
-        <option value="Unemployed"> Unemployed </option>
-      </select>
-
+      <h2> Employment & Economic </h2>
+      <div class="p-3 border bg-light">
+        <label for="occupation">Occupation:</label>
+        <select name="occupation" id="occupation">
+          <option value="Student"> Student </option>
+          <option value="Employed"> Employed </option>
+          <option value="Retired"> Retired </option>
+          <option value="Unemployed"> Unemployed </option>
+        </select>
+      </div>
       <br>
-      <label for="income">Income</label>
-      0 <input type="range" value="10000" id="income" name=income" min="0" max="100000" oninput="this.nextElementSibling.value = this.value"> 1,00,000
-      <output>10000</output>
-
-      <br>
-      <label for="health_insurance">Health Insurance:</label>
-      <input type="checkbox"  id="health_insurance" name="health_insurance">
+      <div class="p-3 border bg-light">
+        <label for="income">Income:</label>
+        <br>
+        0 <input type="range" value="10000" id="income" name=income" min="0" max="100000" oninput="this.nextElementSibling.value = this.value"> 1,00,000
+        <output>10000</output>
+        <br>
+        <label for="health_insurance">Health Insurance:</label>
+        <input type="checkbox"  id="health_insurance" name="health_insurance">
+      </div>  
     </div>
     
     <div class="form-section">
-      <div> Finance </div>
-      <label for="personal_savings">Personal savings:</label>
-      <select name="personal_savings" id="personal_savings" class="form-control">
-        <option value="low_personal_savings"> 	&lt; $500 </option>
-        <option value="medium_personal_savings">  500 &gt; X &lt; 50000 </option>
-        <option value="high_personal_savings"> &gt; 50000 </option>
-      </select>
-
-      <label for="monthly_living_expenses">Monthly Living expenses:</label>
-      <select name="monthly_living_expenses" id="living_expenses" class="form-control">
-        <option value="low_monthly_living_expenses"> 	&lt; $1000 </option>
-        <option value="medium_monthly_living_expenses">  1000 &gt; X &lt; 5000 </option>
-        <option value="high_monthly_living_expenses"> &gt; 5000 </option>
-      </select>
+      <h2> Finance </h2>
+      <div class="p-3 border bg-light"> 
+        <label for="personal_savings">Personal savings:</label>
+        <select name="personal_savings" id="personal_savings" class="form-control">
+          <option value="low_personal_savings"> 	&lt; $500 </option>
+          <option value="medium_personal_savings">  500 &gt; X &lt; 50000 </option>
+          <option value="high_personal_savings"> &gt; 50000 </option>
+        </select>
+      </div>
+      <br>
+      <div class="p-3 border bg-light">
+        <label for="monthly_living_expenses">Monthly Living expenses:</label>
+        <select name="monthly_living_expenses" id="living_expenses" class="form-control">
+          <option value="low_monthly_living_expenses"> 	&lt; $1000 </option>
+          <option value="medium_monthly_living_expenses">  1000 &gt; X &lt; 5000 </option>
+          <option value="high_monthly_living_expenses"> &gt; 5000 </option>
+        </select>
+      </div>
+      <br>
+      <div class="p-3 border bg-light" >
+        <label for="credit_status"> Do you have a SSN/credit card?</label>
+        <input type="checkbox"  id="credit_status" name="credit_status"  default="true" onclick="ssnDisabled()" checked>
+      </div>
+      <br>
+      
+      <fieldset id="disable">
+        <div class="p-3 border bg-light">
+          <label for="number_of_cards">Number of cards:</label>
+          <input type="number" class="form-control" id="number_of_cards" name="number_of_cards" class="form-control" min="1" max="100">
+        </div>
+        <br>
+        <div class="p-3 border bg-light">
+          <label for="investment">Investment:</label>
+          <input type="number" class="form-control" id="investment" name="investment">
+        </div>
+        <br> 
+        <div class="p-3 border bg-light">
+          <label for="credit_score">Credit Score:</label>
+          <select name="credit_score" id="credit_score" class="form-control">
+            <option value="poor"> 	Poor (&lt 700) </option>
+            <option value="good">  (Good 700 &gt; || &lt; 800) </option>
+            <option value="excellent"> (excellent &gt; 800) </option>
+          </select>
+        </div>
+      </fieldset>
     
-      <label for="credit_status"> Do you have a SSN/credit card?</label>
-      <input type="checkbox"  id="credit_status" name="credit_status"  default="false">
-
-      <br>
-      <label for="number_of_cards">Number of cards:</label>
-      <input type="number" class="form-control" id="number_of_cards" name="number_of_cards" class="form-control" required="" min="1" max="100">
-
-      <label for="investment">Investment:</label>
-      <input type="number" class="form-control" id="investment" name="investment" required="">
-
-      <br>
-      <label for="credit_score">Credit Score:</label>
-      <select name="credit_score" id="credit_score" class="form-control">
-        <option value="poor"> 	Poor (&lt 700) </option>
-        <option value="good">  (Good 700 &gt; || &lt; 800) </option>
-        <option value="excellent"> (excellent &gt; 800) </option>
-      </select>
     </div>
 
     <div class="form-section">
