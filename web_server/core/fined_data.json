@@ -16,6 +16,47 @@
         "excerpt" : "Tired of paying a fortune at the gas pump? If your gas bill is getting too expensive, you might need a credit card that can offer significant cash back on gas.", 
         "url_image": "https://www.wisebread.com/compare/images/logo-240x40.png",
         "tags" :["student", "young_adult", "less_credit_card_issued", "low_amount_invested","employed","poor_credit_score",
-        "medium_personal_savings","hispanic","male"]
+        "medium_personal_savings","hispanic","male","female"]
+    },
+    {
+        "type": "CONTENT",
+        "url": "https://www.cnbc.com/select/financial-steps-for-women/", 
+        "title": "7 steps to make sure working women are financially secure",
+        "excerpt" : "Debt-relief attorney Leslie Tayne outlines how women can take control of their financial futures.",
+        "url_image": "https://image.cnbcfm.com/api/v1/image/106850872-1615233361687-gettyimages-1255233626-tcef00791.jpeg?v=1615233692&w=740&h=416&ffmt=webp",
+        "tags" :["female"]
+
+    },
+    {
+        "type": "CONTENT",
+        "url": "https://www.linkedin.com/pulse/my-advice-young-men-proper-money-management-financial-gavaskar-reid-/", 
+        "title": "My Advice to Men on Money Management: Financial Principles from the Bible", 
+        "excerpt" : "I've seen a number of prodigal practices that cause unnecessary financial obstacles and most, if not all, of them are avoidable. There are three main practices that I encourage all young men to subscribe.", 
+        "url_image": "https://media-exp1.licdn.com/dms/image/C5112AQGv0uTxwddAbw/article-cover_image-shrink_423_752/0/1520223573625?e=1668643200&v=beta&t=R7xxzWm-pVZOO7b8iZ51pqDsoHh9Z-Cnwi4ouYsm-sI",
+        "tags" :["male"]
+    },
+    {
+        "type": "CONTENT",
+        "url": "https://www.linkedin.com/pulse/my-advice-young-men-proper-money-management-financial-gavaskar-reid-/", 
+        "title": "Tackling Disparities in Finance for Black and African Americans", 
+        "excerpt" : "During the last five decades, the Black community has had limited access to building wealth for generations. A closer look at wealth in America reveals staggering racial wealth disparities. several tools and resources below to help tackle a few financial challenges and develop ways to create wealth", 
+        "url_image": "https://res.cloudinary.com/moneygeek/image/upload/c_scale,q_auto:eco,f_auto,fl_lossy,w_780/v1609272485/y4i5xcczra0o9qulyqvx.png",
+        "tags" :["african_american"]
+    },
+    {
+        "type": "CONTENT",
+        "url": "https://www.thepennyhoarder.com/budgeting/hispanic-financial-influencers/", 
+        "title": "8 Hispanic Personal Finance Influencers to Follow for Money Advice", 
+        "excerpt" : "Hispanic financial influencers you should know include Jen Hemphill of Her Dinero Matters, left, Rita-Soledad Fernández Paulino of Wealth Para Todos and Anna N'Jie-Konte of First-Gen Realness.", 
+        "url_image": "https://cdn.thepennyhoarder.com/wp-content/uploads/2021/09/27134041/hispanic_financial_influencers.jpg",
+        "tags" :["hispanic"]        
+    },
+    {
+        "type": "CONTENT",
+        "url": "https://www.investopedia.com/articles/younginvestors/09/college_finance.asp", 
+        "title": "Young Investors: What Are You Waiting For?", 
+        "excerpt" : "Many young adults don't take the time to understand how to invest wisely. Often this is because they are concerned about the here-and-now, not the future.", 
+        "url_image": "https://media.gettyimages.com/photos/business-accounting-concept-business-man-using-calculator-with-and-picture-id1178916772",
+        "tags" :["young_adult","student","teen"]        
     }
 ]
