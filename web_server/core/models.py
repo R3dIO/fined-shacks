@@ -15,9 +15,9 @@ class User:
         self.tags = tags if tags else []
 
 
-def save_user(uid, email):
+def save_user(uid, email, first_name, last_name):
     try:
-        result = mongo.db.users.insert_one({'uid': uid, 'email': email})
+        result = mongo.db.users.insert_one({'uid': uid, 'email': email, 'first_name': first_name, 'last_name': last_name})
     except errors.OperationFailure as e:
         logger.debug(e)
         return e.details.get("errmsg")
@@ -35,6 +35,17 @@ def update_user_tags(email, tags):
         raise
 
 
+def retrieve_user_by_email(email):
+    try:
+        result = mongo.db.users.find_one({'email': email}, {'_id': 0})
+        return result
+    except errors.OperationFailure as e:
+        logger.debug(e)
+        return None
+    except:
+        raise
+
+
 class Content:
     TYPE = "content"
 
@@ -47,7 +58,7 @@ class Content:
 
     def create_mongo_document(self):
         return {
-            'type': self.TYPE, 'url': self.url, 'title': self.title, 'excerpt' : self.excerpt, 'url_image': self.url_image
+            'type': self.TYPE, 'url': self.url, 'title': self.title, 'url_image': self.url_image
         }
 
 

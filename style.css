@@ -7,7 +7,7 @@
     font-family: cursive;
     width: 75%;
     height: 100%;
-    padding-top: 40px;
+    padding-top: 80px;
     padding-left: 200px;
     text-align-last: center;
     border: 0;
@@ -31,25 +31,3 @@ html.codepen body {
     display: block;
 }
 
-body{
-    font-family: 'Nunito', sans-serif;
-}
-.divCover {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.divCover img{
-    width: 70%;
-}
-a{
-    text-decoration: none !important;
-}
-#userFullNameError, #userQualificationError, #userLocationError, #userEmailError, #userPasswordError, #userSIEmailError, #userSIPasswordError, #userBioError, #editProfileForm{
-    display: none;
-}
-
-#userAvatar{
-    width: 120px;
-    height: 120px;
-}
