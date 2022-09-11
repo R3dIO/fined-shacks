@@ -1,14 +1,33 @@
 .form-section {
     padding-left: 15px;
-    border-left: 2px solid #FF851B;
     display: none;
 }
 .form-section.current {
     display: inherit;
+    font-family: cursive;
+    width: 75%;
+    height: 100%;
+    padding-top: 80px;
+    padding-left: 200px;
+    text-align-last: center;
+    border: 0;
+    font-size: 100%;
+   
 }
 .btn-info, .btn-default {
     margin-top: 10px;
+    background-color: #945f8f;
+    border-color: #e89ee1;
 }
 html.codepen body {
     margin: 1em;
 }
+.form-control:focus{
+    border-color: #945F8F;
+}
+
+.logo{
+    text-align:center;
+    display: block;
+}
+
