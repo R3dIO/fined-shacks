@@ -42,7 +42,7 @@ class Logout(Resource):
 
 
 class Login(Resource):
-    def get(self):
+    def post(self):
         email = request.json.get('email')
         password = request.json.get('password')
         try:
@@ -51,6 +51,17 @@ class Login(Resource):
             return {'token': jwt}, 200
         except:
             return {'message': 'There was an error logging in'}, 400
+
+
+class SaveUserDetails(Resource):
+    def post(self):
+        user_details = request.json
+        try:
+            tags = generate_tags_from_form(user_details)
+            # store tags in db
+        except:
+            return {'message': 'There was an error logging in'}, 400
+
 
 
 api.add_resource(Ping, '/ping')
