@@ -1,0 +1,55 @@
+.form-section {
+    padding-left: 15px;
+    display: none;
+}
+.form-section.current {
+    display: inherit;
+    font-family: cursive;
+    width: 75%;
+    height: 100%;
+    padding-top: 80px;
+    padding-left: 200px;
+    text-align-last: center;
+    border: 0;
+    font-size: 100%;
+   
+}
+.btn-info, .btn-default {
+    margin-top: 10px;
+    background-color: #945f8f;
+    border-color: #e89ee1;
+}
+html.codepen body {
+    margin: 1em;
+}
+.form-control:focus{
+    border-color: #945F8F;
+}
+
+.logo{
+    text-align:center;
+    display: block;
+}
+
+body{
+    font-family: 'Nunito', sans-serif;
+}
+.divCover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.divCover img{
+    width: 70%;
+}
+a{
+    text-decoration: none !important;
+}
+#userFullNameError, #userQualificationError, #userLocationError, #userEmailError, #userPasswordError, #userSIEmailError, #userSIPasswordError, #userBioError, #editProfileForm{
+    display: none;
+}
+
+#userAvatar{
+    width: 120px;
+    height: 120px;
+}
