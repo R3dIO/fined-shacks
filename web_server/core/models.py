@@ -58,7 +58,7 @@ class Content:
 
     def create_mongo_document(self):
         return {
-            'type': self.TYPE, 'url': self.url, 'title': self.title, 'url_image': self.url_image
+            'type': self.TYPE, 'url': self.url, 'title': self.title, 'url_image': self.url_image, 'excerpt' : self.excerpt
         }
 
 
