@@ -1,3 +1,2 @@
-# fined-shacks
-An application to provide personalized financial advice/knowledge and improve financial literacy in under-represented and less privileged communities.
-
+# Overview
+This directory contains the source code for the frontend.
