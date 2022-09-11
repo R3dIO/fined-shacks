@@ -1,6 +1,6 @@
 $(function () {
     var $sections = $('.form-section');
-  
+
     function navigateTo(index) {
       // Mark the current section with the class 'current'
       $sections
@@ -40,6 +40,13 @@ $(function () {
     navigateTo(0); // Start at the beginning
   });
 
+  
+  function ssnDisabled() {
+    if( document.getElementById("credit_status").checked == false )
+      document.getElementById("disable").disabled = true;
+    if(document.getElementById("credit_status").checked == true )
+      document.getElementById("disable").disabled = false;
+  } 
   $(document).ready(function () {
   $("form").submit(function (event) {
     var formData = {
